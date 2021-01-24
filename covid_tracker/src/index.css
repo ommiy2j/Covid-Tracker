@@ -329,5 +329,6 @@ body{
 }
 .loader{
   width: 200px;
+  user-select: none;
 
 }

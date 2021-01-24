@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Loading from './Loading';
 const Home = (props) => {
     const data = props;
     const [confirmed, setConfirmed] = useState(0);
     const [active, setActive] = useState(0);
     const [Recovered, setRecovered] = useState(0);
     const [decesed, setDecesed] = useState(0);
+    const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         setConfirmed(data.data.confirmedCasesIndian);
         setDecesed(data.data.deaths)
         setRecovered(data.data.discharged)
         setActive(confirmed - (Recovered + decesed));
+        setLoading(false)
     },[active,Recovered,decesed,confirmed])
     return (
         <div>
@@ -26,7 +29,7 @@ const Home = (props) => {
                     <div className="cases">
                         <div className="totalCases">
                             <p>Confirmed Cases</p>
-                            <h1 className="data">{confirmed.toLocaleString()}</h1>
+                                    <h1 className="data">{ confirmed.toLocaleString() }</h1>
                         </div>
                         <div className="activeCases">
                             <p>Active Cases</p>
@@ -38,13 +41,13 @@ const Home = (props) => {
                         </div>
                         <div className="Decesed">
                             <p>Deceased</p>
-                            <h1 className="data">{ decesed.toLocaleString() }</h1>
+                                    <h1 className="data"> {  decesed.toLocaleString() }</h1>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+                </div>
+        )
 }
 
 export default Home
